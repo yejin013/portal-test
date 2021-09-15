@@ -8,11 +8,13 @@ import java.util.Date;
 @Table(name="TB_PT_CMPN_AIDO_YJ")
 public class Company_AiDO {
     @Id
-    @Column(name = "CMPN_CD")
-    Integer company_code;
+    @ManyToOne
+    @JoinColumn(name = "CMPN_CD")
+    Company company;
     @Id
-    @Column(name = "AIDO_CD", length = 20)
-    String aido_code;
+    @ManyToOne
+    @JoinColumn(name = "AIDO_CD")
+    AiDO aido;
     @Column(name = "AC_DTM")
     Date account_datetime;
     @Column(name = "SP")

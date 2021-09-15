@@ -21,5 +21,5 @@ public class AiDO {
     @Column(name = "AIDO_STATUS", length = 20)
     String status;
     @Column(name = "AIDO_UP_RATE")
-    String update_rate;
+    Integer update_rate;
 }

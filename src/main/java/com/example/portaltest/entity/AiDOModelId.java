@@ -1,11 +1,14 @@
 package com.example.portaltest.entity;
 
 import javax.persistence.Column;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import java.io.Serializable;
 
 public class AiDOModelId implements Serializable {
-    @Column(name = "AIDO_CD", length = 20)
-    String aido_cd;
+    @ManyToOne
+    @JoinColumn(name = "AIDO_CD")
+    AiDO aido;
     @Column(name = "MODEL_CD", length = 50)
     String model_cd;
 }

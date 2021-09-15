@@ -7,8 +7,9 @@ import javax.persistence.*;
 @Table(name="TB_PT_AIDO_SVR_YJ")
 public class AiDO_Server {
     @Id
-    @Column(name = "AIDO_CD", length = 20)
-    String aido_cd;
+    @ManyToOne
+    @JoinColumn(name = "AIDO_CD")
+    AiDO aido;
     @Id
     @Column(name = "SVR_CD")
     Integer code;

@@ -1,4 +1,7 @@
 package com.example.portaltest.repository;
 
-public interface CompanyRepository {
+import com.example.portaltest.entity.Company;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface CompanyRepository extends JpaRepository<Company, String> {
 }

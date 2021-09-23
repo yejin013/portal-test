@@ -1,6 +1,9 @@
 package com.example.portaltest.entity;
 
 
+import com.example.portaltest.dto.ServiceUpdateDto;
+import com.example.portaltest.dto.ServiceVersionDto;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -22,4 +25,16 @@ public class AiDO {
     String status;
     @Column(name = "AIDO_UP_RATE")
     Integer update_rate;
+
+    public Integer getUpdate_rate() {
+        return update_rate;
+    }
+
+    public ServiceVersionDto fromVersionToDto() {
+        return new ServiceVersionDto(code, name, version, release_datetime, list_price, status, update_rate);
+    }
+
+    public ServiceUpdateDto fromUpdateToDto() {
+        return new ServiceUpdateDto(code, name, version, release_datetime, list_price, status, update_rate);
+    }
 }

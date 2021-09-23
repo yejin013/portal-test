@@ -1,5 +1,7 @@
 package com.example.portaltest.entity;
 
+import com.example.portaltest.dto.MonthlyAccountDto;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -24,4 +26,8 @@ public class Company_AiDO_Month {
     Integer count;
     @Column(name = "MON_CNT_TYPE", length = 20)
     String count_type;
+
+    public MonthlyAccountDto toDto() {
+        return new MonthlyAccountDto(company, aido, code, price, count, count_type);
+    }
 }

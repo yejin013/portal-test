@@ -1,6 +1,7 @@
 package com.example.portaltest.entity;
 
 
+import com.example.portaltest.dto.AiDODto;
 import com.example.portaltest.dto.ServiceUpdateDto;
 import com.example.portaltest.dto.ServiceVersionDto;
 
@@ -28,6 +29,10 @@ public class AiDO {
 
     public Integer getUpdate_rate() {
         return update_rate;
+    }
+
+    public AiDODto toDto() {
+        return new AiDODto(code, name, version, release_datetime, list_price, status, update_rate);
     }
 
     public ServiceVersionDto fromVersionToDto() {

@@ -31,8 +31,4 @@ public class Company_AiDO {
     String account_memo;
     @Column(name = "AC_NM", length = 50)
     String account_name;
-
-    public AccountDto toDto() {
-        return new AccountDto(company, aido, account_datetime, sales_price, sales_condition, account_number, account_status, account_memo, account_name);
-    }
 }

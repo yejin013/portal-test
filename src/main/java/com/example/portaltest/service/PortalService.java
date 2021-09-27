@@ -2,6 +2,7 @@ package com.example.portaltest.service;
 
 import com.example.portaltest.dto.*;
 import com.example.portaltest.entity.AiDO;
+import com.example.portaltest.entity.Company;
 import com.example.portaltest.entity.Company_AiDO;
 import com.example.portaltest.entity.Company_AiDO_Month;
 import com.example.portaltest.repository.*;
@@ -9,6 +10,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor
@@ -70,8 +72,14 @@ public class PortalService {
 
     // 계약건
     public AccountListDto account(){
-        List<Company_AiDO> list = cmpnAidoRepo.findTop5ByOrderByAccount_datetime();
-        return new AccountListDto(list.stream().map(Company_AiDO::toDto).collect(Collectors.toList()));
+        List<Object[]> list = cmpnAidoRepo.findTop5ByOrderByAccount_datetime();
+
+        for (Object[] objects : list) {
+            Company company = cmpnRepo.findById((Integer) objects[0]).orElseThrow();
+            objects[0] = company;
+        }
+
+        return new AccountListDto(list.stream().map(AccountDto::new).collect(Collectors.toList()));
     }
 
     // 클라우드 비용대비 수익비율
@@ -92,13 +100,19 @@ public class PortalService {
         return new ServiceVersionListDto(list.stream().map(AiDO::fromVersionToDto).collect(Collectors.toList()));
     }
 
-    // 서비스 이용 건수, 서비스 이용 비중
+    // 서비스 이용 건수
     public NumberOfServiceUsesListDto numberOfServiceUses() {
         List<Object[]> list = cmpnAidoRepo.serviceCount();
         return new NumberOfServiceUsesListDto(list.stream().map(NumberOfServiceUsesDto::new).collect(Collectors.toList()));
     }
 
-    // AiDO 서비스 업데이트 및 업데이트 상태 : 업데이트 상태의 경우 100%만 제외해서 전달(함수 분할 필요성 느끼지 못함)
+    // 서비스 이용 비중
+    public NumberOfServiceUsesListDto numberOfServiceUsesRatio() {
+        List<Object[]> list = cmpnAidoRepo.serviceCountRatio();
+        return new NumberOfServiceUsesListDto(list.stream().map(NumberOfServiceUsesDto::new).collect(Collectors.toList()));
+    }
+
+    // AiDO 서비스 업데이트
     public ServiceUpdateListDto serviceUpdate() {
         List<AiDO> list =  aidoRepo.findAll();
         return new ServiceUpdateListDto(list.stream().map(AiDO::fromUpdateToDto).collect(Collectors.toList()));

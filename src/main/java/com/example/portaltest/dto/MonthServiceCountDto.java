@@ -12,11 +12,11 @@ import lombok.NoArgsConstructor;
 public class MonthServiceCountDto {
     Integer year;
     Integer month;
-    Long count;
+    Integer count;
 
     public MonthServiceCountDto(Object[] entity) {
         year = (Integer) entity[0];
         month = (Integer) entity[1];
-        count = (Long) entity[2];
+        count = (Integer) entity[2];
     }
 }

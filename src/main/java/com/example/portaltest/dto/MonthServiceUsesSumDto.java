@@ -12,11 +12,11 @@ import lombok.NoArgsConstructor;
 public class MonthServiceUsesSumDto {
     Integer year;
     Integer month;
-    Float sum;
+    Double sum;
 
     public MonthServiceUsesSumDto(Object[] entity) {
         year = (Integer) entity[0];
         month = (Integer) entity[1];
-        sum = (Float) entity[2];
+        sum = (Double) entity[2];
     }
 }

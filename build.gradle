@@ -19,6 +19,8 @@ dependencies {
     implementation 'org.projectlombok:lombok:1.18.20'
     implementation 'junit:junit:4.13.1'
     implementation 'junit:junit:4.13.1'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
     runtimeOnly 'com.microsoft.sqlserver:mssql-jdbc'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     annotationProcessor('org.projectlombok:lombok:1.18.20')
